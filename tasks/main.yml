@@ -29,6 +29,13 @@
     groups: docker
     append: yes
 
+- name: Download and install docker-compose {{ DOCKER_COMPOSE_VERSION }}
+  get_url:
+    url : https://github.com/docker/compose/releases/download/{{ DOCKER_COMPOSE_VERSION }}/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: "+x"
+  become: true
+
 - name: Enable service docker and enable persistently
   service:
     name: docker
